@@ -1,0 +1,4 @@
+body.markup-comment-mode,
+body.markup-comment-mode * {
+  cursor: crosshair !important;
+}
