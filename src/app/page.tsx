@@ -20,9 +20,9 @@ export default function Home() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ url }),
       });
-      const data = await res.json();
-      if (data.id) router.push('/review/' + data.id);
-      else setError(data.error || 'Something went wrong');
+      const data = await res.json().catch(() => null);
+      if (data?.id) router.push('/review/' + data.id);
+      else setError(data?.error || `Server error (${res.status}). Check your deployment logs.`);
     } catch (err: any) {
       setError(err?.message || 'Network error');
     } finally {
