@@ -30,6 +30,20 @@ Enter a URL → you land on `/review/<id>` → click the **💬 Comment** button
 the page) to turn on comment mode → click anywhere to leave a comment. Use **Copy share
 link** to send the review to someone else.
 
+## Deploy (Vercel)
+
+Vercel's serverless filesystem is read-only, so the JSON file store only works locally.
+In production the app uses **Upstash Redis** automatically when these env vars are present
+(Vercel's `KV_REST_API_*` aliases also work):
+
+```
+UPSTASH_REDIS_REST_URL
+UPSTASH_REDIS_REST_TOKEN
+```
+
+Setup: Vercel project → **Storage** → **Create Database** → **Upstash for Redis** → connect
+to the project (this injects the env vars) → **redeploy**. No env vars = local JSON fallback.
+
 ## Architecture
 
 | Path | Role |
